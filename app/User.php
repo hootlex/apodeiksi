@@ -55,4 +55,8 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return ($this->role == 'business') ? true : false;
     }
 
+    public function scopeBusiness($query){
+        return $query->whereRole('business');
+    }
+
 }
