@@ -30,7 +30,7 @@
                         </div>
                         <!-- Απαιτούμενο Ποσό Form Input -->
                         <div class="form-group">
-                            {!! Form::label('Απαιτούμενο Ποσό', 'Απαιτούμενος Αριθμός Αποδείξεων:') !!}
+                            {!! Form::label('Απαιτούμενο Ποσό', 'Απαιτούμενος Ποσό:') !!}
                             {!! Form::text('money_count', null, array('class'=>'form-control')) !!}
                         </div>
                         <div class="form-group">
