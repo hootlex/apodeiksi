@@ -7,5 +7,4 @@ class Category extends Model {
     public function receipts(){
         return $this->belongsToMany('App\Receipt', 'receipt_category');
     }
-
 }

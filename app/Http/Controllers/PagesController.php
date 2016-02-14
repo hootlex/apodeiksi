@@ -1,8 +1,10 @@
 <?php namespace App\Http\Controllers;
 
+use App\Category;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Receipt;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -53,7 +55,12 @@ class PagesController extends Controller {
      */
     public function categories()
     {
-        $categories=$this->user->categories()->paginate(10);
+        if($this->user->categories()->count() > 0){
+            $categories = $this->user->categories()->paginate(10);
+        }else{
+            $categories=Category::paginate(10);
+        }
+
         return view('pages.categories', compact('categories'));
     }
 
@@ -65,9 +72,12 @@ class PagesController extends Controller {
      */
     public function browseCategory($id)
     {
-        $category = $this->user->categories()->find($id);
-        $receipts=$category->receipts()->paginate(10);
-        return view('pages.receipts', compact('receipts'))->with('page_title', $category->name);
+
+        $receipts = Receipt::whereHas('categories', function ($query) use ($id) {
+            $query->where('id', '=', $id);
+        })->where('user_id', '=', $this->user->id)->paginate();
+
+        return view('pages.receipts', compact('receipts'))->with('page_title', Category::find($id)->name);
     }
 
     /**
