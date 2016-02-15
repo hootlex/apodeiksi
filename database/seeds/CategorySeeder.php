@@ -20,17 +20,16 @@ class CategorySeeder extends Seeder
             'Υπολογιστές', 'Καύσιμα', 'Τρόφιμα', 'Αυτοκίνητο',
             'Οικιακά', 'Έπιπλα', 'Καλλυντικά', 'Τηλεφωνία'
         ];
-        foreach ($catNames as $catName) {
-            Factory::create('App\Category', ['name' => $catName]);
-        }
-
-        //categorize receipts
-        $receipts = \App\Receipt::all();
-        $categories = \App\Category::all();
-        foreach ($receipts as $receipt) {
-            $receipt->categories()->sync(
-                array_pluck($categories->random(mt_rand(2,3)), 'id')
-            );
+        $users = \App\User::whereRole('user')->get();
+        foreach ($users as $user) {
+            foreach ($catNames as $catName) {
+                Factory::create('App\Category', ['name' => $catName, 'user_id' => $user->id]);
+            }
+            foreach ($user->receipts as $receipt) {
+                $receipt->categories()->sync(
+                    array_pluck($user->categories->random(mt_rand(2,3)), 'id')
+                );
+            }
         }
     }
 }
