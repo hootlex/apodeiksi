@@ -7,9 +7,13 @@
 	<meta name="description" content="El Recibo- Mobile App">
 	<meta name="keywords" content="keywords">
 	<title>El Recibo- Mobile App</title>
+	
+	<!-- Sweet Alert -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" rel="stylesheet">
 
 	<!-- Bootstrap -->
 	<link href="css/bootstrap.min.css" rel="stylesheet">
+	
 
 	<!-- General Style -->
 	<link href="style.css" rel="stylesheet">
@@ -91,11 +95,12 @@
 					<a href="#whyus" class="smooth">Πως μπορει να με βοηθησει</a>
 				</li>
 				<li class="push-menu-item">
-					<a href="#information" class="smooth">Πληροφοριες</a>
+					<a href="#gallery" class="smooth">Η ΕΦΑΡΜΟΓΗ ΣΤΑ ΚΙΝΗΤΑ</a>
 				</li>
 				<li class="push-menu-item">
-					<a href="#gallery" class="smooth">Εικονες</a>
+					<a href="#information" class="smooth">Η ΙΣΤΟΣΕΛΙΔΑ ΤΗΣ ΕΦΑΡΜΟΓΗΣ</a>
 				</li>
+				
 				<li class="push-menu-item">
 					<a href="#testimonials" class="smooth">Ποιοι ειμαστε</a>
 				</li>
@@ -118,9 +123,9 @@
 					<i class="fa fa-mobile-phone"></i>
 				</li>
 			</ul>
-			<a href="#" class="btn btn-store-menu"><img src="img/stores/btn-app-store.png" class="img-responsive" alt="app store"></a>
-			<a href="#" class="btn btn-store-menu"><img src="img/stores/btn-google-play.png" class="img-responsive" alt="google store"></a>
-			<a href="#" class="btn btn-store-menu"><img src="img/stores/btn-windows-store.png" class="img-responsive" alt="windows store"></a>
+			<a href="javascript:void(0);" class="btn btn-store-menu download_link"><img src="img/stores/btn-app-store.png" class="img-responsive" alt="app store"></a>
+			<a href="javascript:void(0);" class="btn btn-store-menu download_link"><img src="img/stores/btn-google-play.png" class="img-responsive" alt="google store"></a>
+			<a href="javascript:void(0);" class="btn btn-store-menu download_link"><img src="img/stores/btn-windows-store.png" class="img-responsive" alt="windows store"></a>
 		</div>
 	</nav>
 	<div class="push-menu-container">
@@ -169,9 +174,9 @@
 								<i class="fa fa-mobile-phone"></i>
 							</li>
 						</ul>
-						<a href="#" class="btn btn-store store-btn-repsonsive no-padding"><div class="apple-btn"></div></a>
-						<a href="#" class="btn btn-store store-btn-repsonsive no-padding"><div class="google-btn"></div></a>
-						<a href="#" class="btn btn-store store-btn-repsonsive no-padding"><div class="windows-btn"></div></a>
+						<a href="javascript:void(0);" class="btn btn-store store-btn-repsonsive no-padding download_link"><div class="apple-btn"></div></a>
+						<a href="javascript:void(0);" class="btn btn-store store-btn-repsonsive no-padding download_link"><div class="google-btn"></div></a>
+						<a href="javascript:void(0);" class="btn btn-store store-btn-repsonsive no-padding download_link"><div class="windows-btn"></div></a>
 
 					</div>
 				</div>
@@ -350,6 +355,8 @@
 
 						</div>
 					</div>
+					
+
 				</div>
 				<!-- /gallery Content Inner -->
 			</div>
@@ -598,6 +605,8 @@
 	<script src="vendor/push-menu/js/jasny-bootstrap.min.js"></script>
 	<script src="vendor/animated-text/js/main.js"></script>
 	<script src="vendor/lightbox/js/lightbox.min.js"></script>
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 
 <!-- Google Analytics: Change UA-XXXXX-X to be your site's ID. Go to https://www.google.com/analytics/ for more information.
 	<script type="text/javascript">
@@ -614,5 +623,44 @@
 	
 	</script>
 -->
+<div style="display:none;">
+<div id='myTemplate'>
+	<p class="overview-text">Η εφαρμογή είναι συμβατή και με συσκευές iphone, iPad και windows phone αλλά για το demo
+					παρέχεται μόνο για Android.  </p>
+					</br>
+					<p class="overview-text"><strong>Προσοχή!</strong>
+						Αφού κατεβάσετε την εφαρμογή και την ανοίξετε, στην ειδοποίηση που ζητάει άδεια για άγνωστες πηγές (επειδή δεν την κατεβάζετε απο το play store) πρέπει να αλλάξετε τις ρυθμίσεις και να επιλέξετε ότι εμπιστεύεστε την συγκεκριμένη εφαρμογή.
+					</p>
+					</br>
+					<p class="overview-text">
+						<strong>Δοκιμαστικός Λογαριασμός</strong> Εάν θέλετε να συγχρονίσετε τις αποδείξεις μπορείτε να συνδεθείτε με τον δοκιμαστικό λογαριασμό:
+						<br>username: thanasis@gmail.com<br>password: password
+					</p>
+					</br>
+					<p class="overview-text">
+						<strong>Σημείωση</strong>
+						 Ορισμένες λειτουργίες είναι απενεργοποιημένες αφού ακόμα η εφαρμογή είναι σε φάση development.
+					</p>
+</div>
+</div>
 </body>
+<script type="text/javascript">
+	
+	$('.download_link').click(function(){
+		openPopup();
+	})
+	function openPopup(){
+		swal({   
+			title: "Ενημέρωση",   
+			text: $('#myTemplate').html(),   
+			type: "success",
+			html: true,   
+			confirmButtonText: "Κατεβασμα",
+			allowOutsideClick: true 
+		},
+			function(){
+			  window.open('downloads/el_recibo.apk');
+			});
+	}
+</script>
 </html>
